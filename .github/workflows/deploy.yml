@@ -18,16 +18,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          # Don't cache npm here - we're removing the lockfile
 
-      - name: Install dependencies (fixed for native bindings)
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies with pnpm
         run: |
-          rm -f package-lock.json  # Remove broken lockfile
-          npm cache clean --force  # Clean cache
-          npm install              # Fresh install on CI runner
+          rm -rf node_modules pnpm-lock.yaml  # Clean start
+          pnpm install --no-frozen-lockfile   # Install fresh
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build
         env:
           VITE_APP_ENV: production
 
