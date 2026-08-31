@@ -16,9 +16,9 @@ export const profile = {
   roles: ["Software Engineer", "Mobile & Full-Stack Developer"],
   tagline:
     "I build reliable mobile apps, modern web experiences, and scalable backend systems from idea to production.",
-  experience: "3+ Years",
+  experience: "3.5+ Years",
   location: "India",
-  email: "dhiraj.mobile.dev@gmail.com",
+  email: "me@dhirajchandel.com",
   phone: "8378821983",
   linkedin: "https://www.linkedin.com/in/dhirajsingh-chandel-7259b5172",
 };
