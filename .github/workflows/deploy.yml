@@ -18,22 +18,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          # Don't cache npm here - we're removing the lockfile
 
-      # Clean installation with specific steps to handle native bindings
-      - name: Clean install dependencies
+      - name: Install dependencies (fixed for native bindings)
         run: |
-          rm -rf node_modules package-lock.json
-          npm cache clean --force
-          npm install --legacy-peer-deps
-          # Rebuild native modules
-          npm rebuild
-
-      # Alternative: Reinstall tailwindcss-oxide specifically
-      - name: Fix Tailwind native binding
-        run: |
-          npm rebuild @tailwindcss/oxide
-          npm install --force
+          rm -f package-lock.json  # Remove broken lockfile
+          npm cache clean --force  # Clean cache
+          npm install              # Fresh install on CI runner
 
       - name: Build project
         run: npm run build
