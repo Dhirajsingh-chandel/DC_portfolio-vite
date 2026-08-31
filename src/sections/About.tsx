@@ -5,14 +5,18 @@ import { SectionHeading } from "@/components/SectionHeading";
 export function About() {
   const stats = [
     { value: profile.experience, label: "Experience" },
-    { value: "20+", label: "Projects shipped" },
+    { value: "15", label: "Projects shipped" },
     { value: "6", label: "Domains worked" },
     { value: profile.location, label: "Based in" },
   ];
   return (
     <section id="about" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading eyebrow="About" title="A developer who ships, end to end." />
+        <SectionHeading
+          eyebrow="About"
+          title="Engineering products from mobile to backend"
+          description="A practical, product-focused approach to building software that is clear, reliable, and ready to scale."
+        />
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
           <motion.div
             initial={{ opacity: 0, y: 12 }}

@@ -13,6 +13,8 @@ export function Footer() {
               key={s.label}
               href={s.href}
               aria-label={s.label}
+              target={s.href.startsWith("http") ? "_blank" : undefined}
+              rel={s.href.startsWith("http") ? "noreferrer" : undefined}
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               <s.icon />

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { projects } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
-import { FiGithub, FiExternalLink, FiLayers } from "react-icons/fi";
+import { FiLayers } from "react-icons/fi";
 
 export function Projects() {
   return (
@@ -48,14 +48,6 @@ export function Projects() {
                       {t}
                     </span>
                   ))}
-                </div>
-                <div className="mt-5 flex gap-2">
-                  <a href="#" className="inline-flex items-center gap-1.5 rounded-full btn-ghost px-3 py-1.5 text-xs">
-                    <FiGithub /> Code
-                  </a>
-                  <a href="#" className="inline-flex items-center gap-1.5 rounded-full btn-ghost px-3 py-1.5 text-xs">
-                    <FiExternalLink /> Live
-                  </a>
                 </div>
               </div>
             </motion.article>

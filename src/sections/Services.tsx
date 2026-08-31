@@ -7,7 +7,11 @@ export function Services() {
   return (
     <section id="services" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading eyebrow="Services" title="How I can help" />
+        <SectionHeading
+          eyebrow="Capabilities"
+          title="How I contribute"
+          description="Hands-on engineering support across product development, modernization, integrations, and workflows."
+        />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
             <motion.a

@@ -1,9 +1,53 @@
-import { motion } from "framer-motion";
-import { FiDownload, FiArrowRight, FiMapPin } from "react-icons/fi";
-import avatar from "@/assets/avatar.jpg";
+import { useState } from "react";
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { FiArrowRight, FiMapPin, FiSmartphone, FiLayout, FiCpu, FiCode, FiCloud } from "react-icons/fi";
+import developerWorkspace from "@/assets/developer-workspace.jpg";
 import { profile, heroBadges } from "@/data/portfolio";
 
+const buildAreas = [
+  {
+    label: "Mobile",
+    icon: FiSmartphone,
+    title: "Production-ready mobile apps",
+    stack: "Flutter · Dart · Android · Firebase",
+  },
+  {
+    label: "Web",
+    icon: FiLayout,
+    title: "Modern full-stack products",
+    stack: "React · Node.js · Python · FastAPI",
+  },
+  {
+    label: "Workflows",
+    icon: FiCpu,
+    title: "Intelligent data workflows",
+    stack: "OpenSearch · RAG · Agents · Documents",
+  },
+] as const;
+
 export function Hero() {
+  const [activeArea, setActiveArea] = useState(0);
+  const selectedArea = buildAreas[activeArea];
+  const reduceMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, { stiffness: 120, damping: 18 });
+  const smoothY = useSpring(pointerY, { stiffness: 120, damping: 18 });
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [reduceMotion ? 0 : 7, reduceMotion ? 0 : -7]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [reduceMotion ? 0 : -7, reduceMotion ? 0 : 7]);
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reduceMotion || event.pointerType === "touch") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
+    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
+  };
+
+  const resetTilt = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
     <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -18,7 +62,7 @@ export function Hero() {
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground"
           >
             <span className="inline-block size-2 rounded-full bg-emerald-400 animate-pulse" />
-            Available for opportunities · {profile.experience}
+            Open to meaningful opportunities · {profile.experience}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
@@ -51,17 +95,16 @@ export function Hero() {
             className="mt-8 flex flex-wrap items-center gap-3"
           >
             <a
-              href="/resume.pdf"
-              download
+              href="#projects"
               className="inline-flex items-center gap-2 rounded-full btn-primary px-5 py-3 text-sm font-medium"
             >
-              <FiDownload /> Download Resume
+              View my work <FiArrowRight />
             </a>
             <a
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full btn-ghost px-5 py-3 text-sm font-medium"
             >
-              Contact Me <FiArrowRight />
+              Let's talk
             </a>
           </motion.div>
           <motion.div
@@ -87,27 +130,81 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative mx-auto w-full max-w-sm"
+          className="hero-scene relative mx-auto w-full max-w-sm"
+          onPointerMove={handlePointerMove}
+          onPointerLeave={resetTilt}
         >
+          <div className="hero-orbit hero-orbit-outer" aria-hidden="true">
+            <span className="hero-orbit-node"><FiCloud /></span>
+          </div>
+          <div className="hero-orbit hero-orbit-inner" aria-hidden="true">
+            <span className="hero-orbit-node"><FiCode /></span>
+          </div>
+          <motion.div
+            aria-hidden="true"
+            className="hero-float-chip -left-8 top-20 hidden sm:flex"
+            animate={reduceMotion ? undefined : { y: [0, -10, 0], rotateZ: [-2, 2, -2] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <FiSmartphone /> Mobile
+          </motion.div>
+          <motion.div
+            aria-hidden="true"
+            className="hero-float-chip -right-8 top-12 hidden sm:flex"
+            animate={reduceMotion ? undefined : { y: [0, 9, 0], rotateZ: [2, -2, 2] }}
+            transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          >
+            <FiCpu /> Workflows
+          </motion.div>
           <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/30 to-accent/20 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2rem] glass-card">
+          <motion.div
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            className="hero-tilt-card relative overflow-hidden rounded-[2rem] glass-card"
+          >
             <img
-              src={avatar}
-              alt={`${profile.name} portrait`}
+              src={developerWorkspace}
+              alt="Developer workstation representing mobile, web, and backend engineering"
               width={1024}
               height={1024}
               className="aspect-square w-full object-cover"
             />
-            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-2xl border border-border bg-background/70 px-4 py-3 backdrop-blur-xl">
-              <div>
-                <p className="text-sm font-medium">{profile.name}</p>
-                <p className="text-xs text-muted-foreground">Flutter · AI · Full Stack</p>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10" />
+            <div className="absolute bottom-3 left-3 right-3 rounded-2xl border border-border bg-background/80 p-3 backdrop-blur-xl">
+              <div className="grid grid-cols-3 gap-1" role="tablist" aria-label="Areas of expertise">
+                {buildAreas.map((area, index) => (
+                  <button
+                    key={area.label}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeArea === index}
+                    onClick={() => setActiveArea(index)}
+                    className={`flex items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-[11px] font-medium transition-colors ${
+                      activeArea === index
+                        ? "bg-primary/20 text-foreground"
+                        : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                    }`}
+                  >
+                    <area.icon aria-hidden="true" />
+                    {area.label}
+                  </button>
+                ))}
               </div>
-              <span className="rounded-full bg-emerald-500/15 px-2 py-1 text-[10px] font-medium text-emerald-300">
-                Online
-              </span>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedArea.label}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.18 }}
+                  className="px-2 pb-1 pt-3"
+                  role="tabpanel"
+                >
+                  <p className="text-sm font-medium">{selectedArea.title}</p>
+                  <p className="mt-0.5 text-[11px] text-muted-foreground">{selectedArea.stack}</p>
+                </motion.div>
+              </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

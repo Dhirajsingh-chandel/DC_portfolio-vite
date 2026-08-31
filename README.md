@@ -27,5 +27,4 @@ npm run preview
 ## Edit content
 
 All copy, projects, skills, and links live in `src/data/portfolio.ts`.
-Replace `src/assets/avatar.jpg` with your own photo.
-Drop your CV at `public/resume.pdf` for the hero "Download Resume" button.
+The hero visual lives at `src/assets/developer-workspace.jpg`.

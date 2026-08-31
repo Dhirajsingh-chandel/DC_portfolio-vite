@@ -1,33 +1,34 @@
 import {
   SiFlutter, SiDart, SiFirebase, SiAndroid, SiKotlin,
-  SiFastapi, SiPython, SiPostgresql, SiOpensearch,
+  SiFastapi, SiPython, SiPostgresql, SiNodedotjs, SiOpensearch,
   SiReact, SiNextdotjs, SiJavascript, SiTypescript, SiTailwindcss,
-  SiOpenai, SiLangchain, SiHuggingface,
-  SiGithub, SiGmail,
+  SiGmail,
 } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
-import { FiSmartphone, FiServer, FiCpu, FiDatabase, FiLayout, FiPhone, FiMail } from "react-icons/fi";
+import {
+  FiSmartphone, FiServer, FiDatabase, FiLayout, FiPhone, FiMail,
+  FiZap, FiCloud, FiCpu, FiGitBranch, FiCheckCircle, FiBox,
+} from "react-icons/fi";
 import type { IconType } from "react-icons";
 
 export const profile = {
   name: "Dhiraj Chandel",
-  roles: ["Flutter Developer", "AI Developer", "Full Stack Engineer"],
+  roles: ["Software Engineer", "Mobile & Full-Stack Developer"],
   tagline:
-    "Building modern mobile applications, AI-powered solutions, and scalable software experiences.",
+    "I build reliable mobile apps, modern web experiences, and scalable backend systems from idea to production.",
   experience: "3+ Years",
   location: "India",
-  email: "abcd@gmail.com",
-  phone: "8372345328",
-  github: "https://github.com/",
-  linkedin: "https://linkedin.com/",
+  email: "dhiraj.mobile.dev@gmail.com",
+  phone: "8378821983",
+  linkedin: "https://www.linkedin.com/in/dhirajsingh-chandel-7259b5172",
 };
 
-export const heroBadges = ["Flutter", "FastAPI", "RAG", "AI Agents", "Firebase", "OpenSearch"];
+export const heroBadges = ["Flutter", "Android", "React", "Python", "FastAPI", "OpenSearch"];
 
 export const about = [
-  "I'm a developer from India with 3+ years of experience crafting production mobile apps with Flutter, building robust Python/FastAPI backends, and shipping AI-powered features that feel genuinely useful.",
-  "My day-to-day spans Flutter app architecture (GetX, BLoC, Riverpod), Firebase, REST APIs, OpenSearch and lately a lot of agentic AI — RAG pipelines, LLM tooling, and AI automation.",
-  "I care about clean architecture, smooth UX, and solving real problems — whether that's a hospital management system, a chat platform, or an AI assistant talking to your own data.",
+  "I'm a software engineer from India with 3+ years of experience delivering production applications across mobile, web, and backend platforms.",
+  "My work spans Flutter and Android development, React interfaces, Python and FastAPI services, Firebase, OpenSearch, document-processing workflows, and AI-assisted products.",
+  "I focus on maintainable architecture, thoughtful user experiences, and dependable delivery—from modernizing legacy apps to building new products end to end.",
 ];
 
 export type SkillGroup = { title: string; icon: IconType; skills: { name: string; icon: IconType }[] };
@@ -50,7 +51,11 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "FastAPI", icon: SiFastapi },
       { name: "Python", icon: SiPython },
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "JavaScript", icon: SiJavascript },
       { name: "REST APIs", icon: FiServer },
+      { name: "Serverless", icon: FiCloud },
+      { name: "Event-Driven", icon: FiZap },
     ],
   },
   {
@@ -65,50 +70,88 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "AI Development",
-    icon: FiCpu,
+    title: "Databases",
+    icon: FiDatabase,
     skills: [
-      { name: "RAG", icon: SiLangchain },
-      { name: "AI Agents", icon: SiOpenai },
-      { name: "Prompt Eng.", icon: SiHuggingface },
-      { name: "LLM Apps", icon: SiOpenai },
+      { name: "SQL", icon: SiPostgresql },
+      { name: "Firestore", icon: SiFirebase },
+      { name: "OpenSearch", icon: SiOpensearch },
     ],
   },
   {
-    title: "Databases & Search",
-    icon: FiDatabase,
+    title: "Architecture & State",
+    icon: FiGitBranch,
     skills: [
-      { name: "OpenSearch", icon: SiOpensearch },
-      { name: "SQL", icon: SiPostgresql },
-      { name: "Firestore", icon: SiFirebase },
+      { name: "Clean Architecture", icon: FiGitBranch },
+      { name: "BLoC", icon: SiFlutter },
+      { name: "Riverpod", icon: SiFlutter },
+      { name: "GetX", icon: SiFlutter },
+      { name: "Dependency Injection", icon: FiBox },
+      { name: "Offline-First", icon: FiSmartphone },
+    ],
+  },
+  {
+    title: "Testing & Quality",
+    icon: FiCheckCircle,
+    skills: [
+      { name: "Unit Testing", icon: FiCheckCircle },
+      { name: "Widget Testing", icon: SiFlutter },
+      { name: "Integration Testing", icon: FiCheckCircle },
+      { name: "API Testing", icon: FiServer },
+      { name: "Debugging", icon: FiCheckCircle },
+      { name: "Code Review", icon: FiGitBranch },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: FiCloud,
+    skills: [
+      { name: "Git", icon: FiGitBranch },
+      { name: "GitHub", icon: FiGitBranch },
+      { name: "CI/CD", icon: FiZap },
+      { name: "Docker", icon: FiBox },
+      { name: "Cloud Functions", icon: FiCloud },
+      { name: "Monitoring", icon: FiServer },
+    ],
+  },
+  {
+    title: "AI & Workflows",
+    icon: FiCpu,
+    skills: [
+      { name: "AI Assistants", icon: FiCpu },
+      { name: "Agent Workflows", icon: FiZap },
+      { name: "Document Processing", icon: FiDatabase },
+      { name: "Vector Search", icon: SiOpensearch },
+      { name: "RAG", icon: FiDatabase },
+      { name: "LLM Integration", icon: FiCpu },
     ],
   },
 ];
 
 export const experiences = [
   {
-    company: "DCB",
-    role: "Flutter & AI Developer",
+    company: "Zetaris · Melbourne, Australia",
+    role: "Software Engineer",
     period: "Present",
     points: [
-      "Architecting Flutter mobile applications for production",
-      "Building FastAPI backends with OpenSearch integrations",
-      "Designing RAG pipelines and AI agents for real workflows",
-      "Shipping AI-powered features end to end",
+      "Develop products across React, Flutter, Python, and FastAPI",
+      "Build search and data workflows powered by OpenSearch",
+      "Create AI assistants, automated workflows, and agent-based features",
+      "Design document-upload, processing, and retrieval pipelines",
     ],
-    stack: ["Flutter", "FastAPI", "OpenSearch", "Python", "RAG", "AI Agents"],
+    stack: ["React", "Flutter", "Python", "FastAPI", "OpenSearch", "AI Assistants", "Workflows"],
   },
   {
-    company: "XYZ",
+    company: "TechneAI Pvt. Ltd. · Pune",
     role: "Flutter Developer",
-    period: "Past",
+    period: "Previous",
     points: [
-      "Built and maintained Flutter mobile apps",
-      "Integrated Firebase (Auth, Firestore, Cloud Messaging)",
-      "Connected REST APIs and handled state management",
-      "Published applications to the Google Play Store",
+      "Developed and maintained Flutter and native Android applications",
+      "Built e-commerce, hospital management, B2B, and catalogue applications",
+      "Modernized legacy applications with maintainable architecture and current tooling",
+      "Integrated APIs and delivered reliable, production-ready mobile experiences",
     ],
-    stack: ["Flutter", "Dart", "Firebase", "REST APIs"],
+    stack: ["Flutter", "Dart", "Android", "Firebase", "REST APIs"],
   },
 ];
 
@@ -132,21 +175,21 @@ export const projects = [
     accent: "from-sky-500/30 to-cyan-500/20",
   },
   {
-    title: "AI Agent Platform",
+    title: "Event-Driven Service Platform",
     description:
-      "Agentic AI platform where users compose multi-step agents with tools, memory, and structured outputs.",
-    tech: ["FastAPI", "Python", "LLMs", "Next.js"],
-    challenge: "Orchestrating tool-using agents safely with predictable behavior.",
-    result: "Cut repetitive workflows by automating multi-step reasoning over internal data.",
+      "Event-driven platform that coordinates background jobs, notifications, and integrations across independent services.",
+    tech: ["Node.js", "JavaScript", "React", "Serverless"],
+    challenge: "Keeping asynchronous workflows reliable, observable, and easy to retry.",
+    result: "Improved system responsiveness while decoupling long-running background work.",
     accent: "from-emerald-500/30 to-teal-500/20",
   },
   {
-    title: "RAG Assistant",
+    title: "Serverless API Platform",
     description:
-      "Retrieval-Augmented assistant grounded on private documents using OpenSearch as the vector + lexical store.",
-    tech: ["FastAPI", "OpenSearch", "Python", "LLMs"],
-    challenge: "Hybrid retrieval that stays accurate on long, messy enterprise documents.",
-    result: "Trustworthy answers with cited sources from internal knowledge bases.",
+      "Scalable serverless APIs for user management, scheduled processing, and third-party integrations.",
+    tech: ["Node.js", "JavaScript", "Firebase", "REST APIs"],
+    challenge: "Designing stateless functions with secure access and predictable execution.",
+    result: "Reduced infrastructure overhead and enabled independent feature deployments.",
     accent: "from-amber-500/30 to-orange-500/20",
   },
   {
@@ -169,26 +212,16 @@ export const projects = [
   },
 ];
 
-export const aiCapabilities = [
-  { title: "RAG Pipelines", desc: "Hybrid retrieval over private data with grounded, cited answers." },
-  { title: "AI Agents", desc: "Tool-using agents with memory, planning, and structured outputs." },
-  { title: "Agentic AI", desc: "Multi-step autonomous workflows that act, not just chat." },
-  { title: "Prompt Engineering", desc: "Reliable prompts, evals, and guardrails for production LLMs." },
-  { title: "AI Automation", desc: "Replacing repetitive workflows with LLM-driven orchestration." },
-  { title: "LLM Applications", desc: "End-to-end LLM apps from API to UI, optimized for cost and latency." },
-];
-
 export const services = [
-  { title: "Flutter App Development", desc: "Production-grade cross-platform mobile apps." },
-  { title: "AI Agent Development", desc: "Custom agents with tools, memory, and structured workflows." },
-  { title: "FastAPI Development", desc: "Typed, fast, well-documented Python backends." },
-  { title: "Firebase Integration", desc: "Auth, Firestore, FCM, Storage and security rules." },
-  { title: "Mobile App Consulting", desc: "Architecture reviews and roadmap planning for mobile teams." },
-  { title: "AI Integration", desc: "Add RAG, agents, and LLM features to existing products." },
+  { title: "Mobile App Development", desc: "Production-ready Flutter and Android applications." },
+  { title: "Web Application Development", desc: "Responsive, maintainable interfaces built with React." },
+  { title: "Backend Development", desc: "Reliable APIs and services with Python, FastAPI, and Node.js." },
+  { title: "Firebase Integration", desc: "Authentication, Firestore, messaging, storage, and security rules." },
+  { title: "App Modernization", desc: "Legacy application upgrades, architecture improvements, and migrations." },
+  { title: "Workflow Engineering", desc: "Document processing, search, automation, and event-driven workflows." },
 ];
 
 export const socials = [
-  { label: "GitHub", href: profile.github, icon: SiGithub },
   { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin },
   { label: "Email", href: `mailto:${profile.email}`, icon: SiGmail },
   { label: "Phone", href: `tel:${profile.phone}`, icon: FiPhone },
@@ -199,7 +232,6 @@ export const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "AI", href: "#ai" },
   { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];

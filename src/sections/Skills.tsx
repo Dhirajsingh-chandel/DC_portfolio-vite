@@ -9,7 +9,7 @@ export function Skills() {
         <SectionHeading
           eyebrow="Skills"
           title="Technologies I work with"
-          description="A pragmatic stack honed across mobile, backend, AI and frontend."
+          description="A focused toolkit spanning application development, architecture, testing, cloud delivery, and intelligent workflows."
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((g, i) => (

@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { profile, socials } from "@/data/portfolio";
 import { SectionHeading } from "@/components/SectionHeading";
-import { FiMail, FiPhone, FiSend, FiCheck } from "react-icons/fi";
+import { FiMail, FiPhone, FiSend } from "react-icons/fi";
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
   return (
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
@@ -46,6 +44,8 @@ export function Contact() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
+                  target={s.href.startsWith("http") ? "_blank" : undefined}
+                  rel={s.href.startsWith("http") ? "noreferrer" : undefined}
                   className="grid size-11 place-items-center rounded-xl glass-card transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   <s.icon />
@@ -60,8 +60,13 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             onSubmit={(e) => {
               e.preventDefault();
-              setSent(true);
-              setTimeout(() => setSent(false), 3000);
+              const form = new FormData(e.currentTarget);
+              const subject = String(form.get("subject") || "Portfolio enquiry");
+              const name = String(form.get("name") || "");
+              const email = String(form.get("email") || "");
+              const message = String(form.get("message") || "");
+              const body = `${message}\n\nFrom: ${name}\nEmail: ${email}`;
+              window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             }}
             className="rounded-3xl glass-card p-6"
           >
@@ -76,6 +81,7 @@ export function Contact() {
               </label>
               <textarea
                 required
+                name="message"
                 rows={5}
                 placeholder="Tell me a bit about the project…"
                 className="w-full resize-none rounded-xl border border-input bg-background/40 px-4 py-3 text-sm outline-none transition-colors focus:border-primary"
@@ -85,15 +91,7 @@ export function Contact() {
               type="submit"
               className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full btn-primary px-5 py-3 text-sm font-medium sm:w-auto"
             >
-              {sent ? (
-                <>
-                  <FiCheck /> Message sent
-                </>
-              ) : (
-                <>
-                  <FiSend /> Send message
-                </>
-              )}
+              <FiSend /> Send via email
             </button>
           </motion.form>
         </div>

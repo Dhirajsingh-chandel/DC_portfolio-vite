@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { navLinks, profile } from "@/data/portfolio";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiMoon, FiSun } from "react-icons/fi";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(() =>
+    typeof document !== "undefined" && document.documentElement.classList.contains("dark"),
+  );
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -39,19 +47,41 @@ export function Navbar() {
             </a>
           ))}
         </div>
-        <a
-          href="#contact"
-          className="hidden rounded-full btn-primary px-4 py-2 text-sm font-medium md:inline-flex"
-        >
-          Let's talk
-        </a>
-        <button
-          aria-label="Menu"
-          className="rounded-md border border-border p-2 md:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <FiX /> : <FiMenu />}
-        </button>
+        <div className="hidden items-center gap-2 md:flex">
+          <button
+            type="button"
+            onClick={() => setDarkMode((value) => !value)}
+            aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`}
+            title={`Switch to ${darkMode ? "light" : "dark"} mode`}
+            className="grid size-10 place-items-center rounded-full border border-border bg-card/50 text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+          >
+            {darkMode ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
+          </button>
+          <a
+            href="#contact"
+            className="rounded-full btn-primary px-4 py-2 text-sm font-medium"
+          >
+            Let's talk
+          </a>
+        </div>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={() => setDarkMode((value) => !value)}
+            aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`}
+            className="grid size-10 place-items-center rounded-full border border-border bg-card/50 text-muted-foreground"
+          >
+            {darkMode ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
+          </button>
+          <button
+            type="button"
+            aria-label="Menu"
+            className="rounded-md border border-border p-2"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </nav>
       {open && (
         <div className="border-t border-border bg-background/95 px-6 py-4 md:hidden">

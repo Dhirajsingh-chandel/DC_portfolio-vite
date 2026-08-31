@@ -7,7 +7,11 @@ export function Experience() {
   return (
     <section id="experience" className="py-24">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeading eyebrow="Experience" title="Where I've built things" />
+        <SectionHeading
+          eyebrow="Experience"
+          title="Professional experience"
+          description="Building customer-facing applications and data products across mobile, web, and backend systems."
+        />
         <div className="relative">
           <div className="absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-primary/40 via-border to-transparent sm:block" />
           <div className="space-y-6">
